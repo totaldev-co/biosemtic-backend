@@ -101,7 +101,7 @@ class ServiceResource extends Resource
                 ImageColumn::make('icon')
                     ->label('Icono')
                     ->disk('public')
-                    ->size(40),
+                    ->imageSize(40),
 
                 TextColumn::make('title')
                     ->label('Título')
@@ -123,7 +123,7 @@ class ServiceResource extends Resource
             ])
             ->defaultSort('order')
             ->reorderable('order')
-            ->actions([
+            ->recordActions([
                 EditAction::make()
                     ->label('Editar'),
             ]);

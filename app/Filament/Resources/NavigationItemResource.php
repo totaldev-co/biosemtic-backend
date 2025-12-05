@@ -99,7 +99,7 @@ class NavigationItemResource extends Resource
             ])
             ->defaultSort('order')
             ->reorderable('order')
-            ->actions([
+            ->recordActions([
                 EditAction::make()->label('Editar'),
                 DeleteAction::make()->label('Eliminar'),
             ]);

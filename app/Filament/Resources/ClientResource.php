@@ -75,7 +75,7 @@ class ClientResource extends Resource
                 ImageColumn::make('logo')
                     ->label('Logo')
                     ->disk('public')
-                    ->size(60),
+                    ->imageSize(60),
 
                 TextColumn::make('name')
                     ->label('Nombre')
@@ -97,7 +97,7 @@ class ClientResource extends Resource
             ])
             ->defaultSort('order')
             ->reorderable('order')
-            ->actions([
+            ->recordActions([
                 EditAction::make()
                     ->label('Editar'),
                 DeleteAction::make()

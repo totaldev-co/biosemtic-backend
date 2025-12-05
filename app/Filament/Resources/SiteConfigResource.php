@@ -187,7 +187,7 @@ class SiteConfigResource extends Resource
                 ImageColumn::make('logo_header')
                     ->label('Logo Header')
                     ->disk('public')
-                    ->height(40),
+                    ->imageHeight(40),
 
                 TextColumn::make('footer_description')
                     ->label('Descripción')
@@ -202,7 +202,7 @@ class SiteConfigResource extends Resource
                     ->dateTime('d/m/Y H:i')
                     ->sortable(),
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make()->label('Editar'),
             ]);
     }

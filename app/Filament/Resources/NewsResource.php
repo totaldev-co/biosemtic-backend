@@ -117,7 +117,7 @@ class NewsResource extends Resource
                 ImageColumn::make('image')
                     ->label('Imagen')
                     ->disk('public')
-                    ->height(60),
+                    ->imageHeight(60),
 
                 TextColumn::make('title')
                     ->label('Título')
@@ -140,7 +140,7 @@ class NewsResource extends Resource
             ])
             ->defaultSort('order')
             ->reorderable('order')
-            ->actions([
+            ->recordActions([
                 EditAction::make()
                     ->label('Editar'),
             ]);

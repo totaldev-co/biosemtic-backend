@@ -21,7 +21,7 @@ class ListNews extends ListRecords
                 ->label('Editar título de sección')
                 ->icon('heroicon-o-cog-6-tooth')
                 ->color('gray')
-                ->form([
+                ->schema([
                     TextInput::make('title')
                         ->label('Título de la sección')
                         ->required()

@@ -4,6 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string|null $phone
+ * @property string|null $company
+ * @property string $subject
+ * @property string $message
+ * @property string $status
+ * @property string|null $notes
+ * @property \Carbon\Carbon|null $read_at
+ * @property \Carbon\Carbon|null $replied_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class ContactRequest extends Model
 {
     protected $fillable = [

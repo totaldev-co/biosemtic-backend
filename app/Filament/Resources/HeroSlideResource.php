@@ -113,8 +113,8 @@ class HeroSlideResource extends Resource
                 ImageColumn::make('image')
                     ->label('Imagen')
                     ->disk('public')
-                    ->height(60)
-                    ->width(100),
+                    ->imageHeight(60)
+                    ->imageWidth(100),
 
                 TextColumn::make('title')
                     ->label('Título')

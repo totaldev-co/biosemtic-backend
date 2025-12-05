@@ -111,7 +111,7 @@ class ContactInfoResource extends Resource
                     ->dateTime('d/m/Y H:i')
                     ->sortable(),
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make()
                     ->label('Editar'),
             ]);
