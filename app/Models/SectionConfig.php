@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Traits\HasContentCache;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
 
 class SectionConfig extends Model
 {
@@ -25,7 +24,7 @@ class SectionConfig extends Model
         'extra_data' => 'array',
     ];
 
-    protected static string $cacheKey = 'section_configs_content';
+    public const CACHE_KEY = 'content.section_configs';
 
     /**
      * Obtener configuración de una sección específica por su key
@@ -71,8 +70,21 @@ class SectionConfig extends Model
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'description' => $this->description,
-            'background_image' => $this->background_image ? asset('storage/' . $this->background_image) : null,
+            'background_image' => $this->background_image_url,
             'extra_data' => $this->extra_data,
         ];
+    }
+
+    public function getBackgroundImageUrlAttribute(): ?string
+    {
+        if (!$this->background_image) {
+            return null;
+        }
+
+        if (str_starts_with($this->background_image, 'http')) {
+            return $this->background_image;
+        }
+
+        return asset('storage/' . $this->background_image);
     }
 }

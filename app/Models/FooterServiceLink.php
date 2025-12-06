@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasContentCache;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
 
 class FooterServiceLink extends Model
 {
+    use HasContentCache;
+
     protected $fillable = [
         'label',
         'url',
@@ -20,35 +22,14 @@ class FooterServiceLink extends Model
         'is_active' => 'boolean',
     ];
 
-    public const CACHE_KEY = 'footer_service_links';
-    public const CACHE_TTL = 3600;
+    public const CACHE_KEY = 'content.footer_service_links';
 
-    /**
-     * Obtener links de servicios activos cacheados
-     */
-    public static function getCached(): array
+    public function toApiArray(): array
     {
-        return Cache::remember(self::CACHE_KEY, self::CACHE_TTL, function () {
-            return self::where('is_active', true)
-                ->orderBy('order')
-                ->get()
-                ->map(fn($link) => [
-                    'label' => $link->label,
-                    'url' => $link->url,
-                    'badge' => $link->badge,
-                ])
-                ->toArray();
-        });
-    }
-
-    public static function clearCache(): void
-    {
-        Cache::forget(self::CACHE_KEY);
-    }
-
-    protected static function booted(): void
-    {
-        static::saved(fn() => self::clearCache());
-        static::deleted(fn() => self::clearCache());
+        return [
+            'label' => $this->label,
+            'url' => $this->url,
+            'badge' => $this->badge,
+        ];
     }
 }

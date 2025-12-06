@@ -25,12 +25,7 @@ class ContactInfo extends Model
         'is_active' => 'boolean',
     ];
 
-    protected static string $cacheKey = 'contact_info_content';
-
-    public function scopeForApi($query)
-    {
-        return $query->where('is_active', true);
-    }
+    public const CACHE_KEY = 'content.contact_info';
 
     public function toApiArray(): array
     {

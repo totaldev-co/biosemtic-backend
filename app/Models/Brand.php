@@ -18,21 +18,30 @@ class Brand extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'order' => 'integer',
     ];
 
-    protected static string $cacheKey = 'brands_content';
-
-    public function scopeForApi($query)
-    {
-        return $query->where('is_active', true)->orderBy('order');
-    }
+    public const CACHE_KEY = 'content.brands';
 
     public function toApiArray(): array
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'logo' => $this->logo ? asset('storage/' . $this->logo) : null,
+            'logo' => $this->logo_url,
         ];
+    }
+
+    public function getLogoUrlAttribute(): ?string
+    {
+        if (!$this->logo) {
+            return null;
+        }
+
+        if (str_starts_with($this->logo, 'http')) {
+            return $this->logo;
+        }
+
+        return asset('storage/' . $this->logo);
     }
 }

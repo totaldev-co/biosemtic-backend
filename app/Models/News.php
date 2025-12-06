@@ -23,14 +23,10 @@ class News extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'order' => 'integer',
     ];
 
-    protected static string $cacheKey = 'news_content';
-
-    public function scopeForApi($query)
-    {
-        return $query->where('is_active', true)->orderBy('order');
-    }
+    public const CACHE_KEY = 'content.news';
 
     public function toApiArray(): array
     {
@@ -38,11 +34,24 @@ class News extends Model
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'image' => $this->image ? asset('storage/' . $this->image) : null,
+            'image' => $this->image_url,
             'top_left_text' => $this->top_left_text,
             'top_right_text' => $this->top_right_text,
             'link_text' => $this->link_text,
             'link_url' => $this->link_url,
         ];
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+
+        return asset('storage/' . $this->image);
     }
 }

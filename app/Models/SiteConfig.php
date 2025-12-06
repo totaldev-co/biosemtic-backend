@@ -29,12 +29,9 @@ class SiteConfig extends Model
         'is_active' => 'boolean',
     ];
 
-    public const CACHE_KEY = 'site_config';
+    public const CACHE_KEY = 'content.site_config';
     public const CACHE_TTL = 3600;
 
-    /**
-     * Obtener la configuración activa cacheada
-     */
     public static function getCached(): ?array
     {
         return Cache::remember(self::CACHE_KEY, self::CACHE_TTL, function () {
@@ -44,36 +41,7 @@ class SiteConfig extends Model
                 return null;
             }
 
-            return [
-                'logo_header' => $config->logo_header ? asset('storage/' . $config->logo_header) : null,
-                'logo_footer' => $config->logo_footer ? asset('storage/' . $config->logo_footer) : null,
-                'footer_description' => $config->footer_description,
-                'footer_services_title' => $config->footer_services_title,
-                'footer_contact_title' => $config->footer_contact_title,
-                'copyright_text' => $config->copyright_text,
-                'social_links' => [
-                    'whatsapp' => [
-                        'url' => $config->whatsapp_url,
-                        'icon' => $config->whatsapp_icon ? asset('storage/' . $config->whatsapp_icon) : null,
-                    ],
-                    'facebook' => [
-                        'url' => $config->facebook_url,
-                        'icon' => $config->facebook_icon ? asset('storage/' . $config->facebook_icon) : null,
-                    ],
-                    'instagram' => [
-                        'url' => $config->instagram_url,
-                        'icon' => $config->instagram_icon ? asset('storage/' . $config->instagram_icon) : null,
-                    ],
-                    'linkedin' => [
-                        'url' => $config->linkedin_url,
-                        'icon' => null,
-                    ],
-                    'youtube' => [
-                        'url' => $config->youtube_url,
-                        'icon' => null,
-                    ],
-                ],
-            ];
+            return $config->toApiArray();
         });
     }
 
@@ -86,5 +54,52 @@ class SiteConfig extends Model
     {
         static::saved(fn() => self::clearCache());
         static::deleted(fn() => self::clearCache());
+    }
+
+    public function toApiArray(): array
+    {
+        return [
+            'logo_header' => $this->getAssetUrl($this->logo_header),
+            'logo_footer' => $this->getAssetUrl($this->logo_footer),
+            'footer_description' => $this->footer_description,
+            'footer_services_title' => $this->footer_services_title,
+            'footer_contact_title' => $this->footer_contact_title,
+            'copyright_text' => $this->copyright_text,
+            'social_links' => [
+                'whatsapp' => [
+                    'url' => $this->whatsapp_url,
+                    'icon' => $this->getAssetUrl($this->whatsapp_icon),
+                ],
+                'facebook' => [
+                    'url' => $this->facebook_url,
+                    'icon' => $this->getAssetUrl($this->facebook_icon),
+                ],
+                'instagram' => [
+                    'url' => $this->instagram_url,
+                    'icon' => $this->getAssetUrl($this->instagram_icon),
+                ],
+                'linkedin' => [
+                    'url' => $this->linkedin_url,
+                    'icon' => null,
+                ],
+                'youtube' => [
+                    'url' => $this->youtube_url,
+                    'icon' => null,
+                ],
+            ],
+        ];
+    }
+
+    private function getAssetUrl(?string $path): ?string
+    {
+        if (!$path) {
+            return null;
+        }
+
+        if (str_starts_with($path, 'http')) {
+            return $path;
+        }
+
+        return asset('storage/' . $path);
     }
 }

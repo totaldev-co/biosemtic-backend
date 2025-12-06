@@ -25,11 +25,7 @@ class HeroSlide extends Model
     ];
 
     public const CACHE_KEY = 'content.hero_slides';
-    public const CACHE_TTL = 3600; // 1 hora
 
-    /**
-     * Transformación para API
-     */
     public function toApiArray(): array
     {
         return [
@@ -42,9 +38,6 @@ class HeroSlide extends Model
         ];
     }
 
-    /**
-     * URL completa de la imagen
-     */
     public function getImageUrlAttribute(): ?string
     {
         if (!$this->image) {
