@@ -63,6 +63,7 @@ class HeroSlideResource extends Resource
                             ->image()
                             ->required()
                             ->disk('public')
+                            ->directory('hero-slides')
                             ->visibility('public')
                             ->helperText('Recomendado: 1920x1080px, formato JPG o PNG')
                             ->columnSpanFull(),
