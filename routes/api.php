@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AboutUsController;
 use App\Http\Controllers\Api\ContentController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
@@ -33,6 +34,18 @@ Route::prefix('home')->group(function () {
     Route::get('/news', [HomeController::class, 'news']);
     Route::get('/brands', [HomeController::class, 'brands']);
     Route::get('/contact-info', [HomeController::class, 'contactInfo']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| API Routes - About Us Page Content
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('about-us')->group(function () {
+    Route::get('/who-we-are', [AboutUsController::class, 'whoWeAre']);
+    Route::get('/excellence', [AboutUsController::class, 'excellence']);
+    Route::get('/values', [AboutUsController::class, 'values']);
 });
 
 /*

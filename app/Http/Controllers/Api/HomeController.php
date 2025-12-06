@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function sectionSettings(): Response
     {
-        $data = SectionSetting::getAllCached();
+        $data = SectionSetting::getCached();
 
         return RB::success($data);
     }
