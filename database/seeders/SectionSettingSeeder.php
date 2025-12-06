@@ -30,6 +30,21 @@ class SectionSettingSeeder extends Seeder
                 'title' => 'Nuestras marcas aliadas',
                 'subtitle' => 'Respaldados por marcas reconocidas en todo el país',
             ],
+            [
+                'section_key' => 'who_we_are',
+                'title' => 'Quiénes somos',
+                'subtitle' => null,
+            ],
+            [
+                'section_key' => 'excellence',
+                'title' => 'Nuestro compromiso es la excelencia',
+                'subtitle' => null,
+            ],
+            [
+                'section_key' => 'values',
+                'title' => 'Nuestros valores',
+                'subtitle' => 'Nuestros valores compartidos nos mantienen unidos y nos guían como un solo equipo.',
+            ],
         ];
 
         foreach ($sections as $section) {
