@@ -46,6 +46,9 @@ Route::prefix('about-us')->group(function () {
     Route::get('/who-we-are', [AboutUsController::class, 'whoWeAre']);
     Route::get('/excellence', [AboutUsController::class, 'excellence']);
     Route::get('/values', [AboutUsController::class, 'values']);
+    Route::get('/mission-vision', [AboutUsController::class, 'missionVision']);
+    Route::get('/client-testimonials', [AboutUsController::class, 'clientTestimonials']);
+    Route::get('/call-to-action', [AboutUsController::class, 'callToAction']);
 });
 
 /*

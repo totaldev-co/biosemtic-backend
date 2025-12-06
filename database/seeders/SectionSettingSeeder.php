@@ -45,6 +45,16 @@ class SectionSettingSeeder extends Seeder
                 'title' => 'Nuestros valores',
                 'subtitle' => 'Nuestros valores compartidos nos mantienen unidos y nos guían como un solo equipo.',
             ],
+            [
+                'section_key' => 'mission_vision',
+                'title' => 'Misión y visión',
+                'subtitle' => null,
+            ],
+            [
+                'section_key' => 'client_testimonials',
+                'title' => 'Nuestros clientes',
+                'subtitle' => null,
+            ],
         ];
 
         foreach ($sections as $section) {
