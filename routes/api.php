@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AboutUsController;
 use App\Http\Controllers\Api\ContentController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
+use App\Http\Controllers\Api\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,20 @@ Route::prefix('about-us')->group(function () {
     Route::get('/mission-vision', [AboutUsController::class, 'missionVision']);
     Route::get('/client-testimonials', [AboutUsController::class, 'clientTestimonials']);
     Route::get('/call-to-action', [AboutUsController::class, 'callToAction']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| API Routes - Products Page Content
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('products')->group(function () {
+    Route::get('/categories', [ProductsController::class, 'categories']);
+    Route::get('/', [ProductsController::class, 'index']);
+    Route::get('/faqs', [ProductsController::class, 'faqs']);
+    Route::get('/category/{slug}', [ProductsController::class, 'byCategory']);
+    Route::get('/{id}', [ProductsController::class, 'show']);
 });
 
 /*

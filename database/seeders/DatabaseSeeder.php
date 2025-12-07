@@ -41,6 +41,10 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             BrandSeeder::class,
             ContactInfoSeeder::class,
+            // Products
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
+            ProductFaqSeeder::class,
         ]);
     }
 }

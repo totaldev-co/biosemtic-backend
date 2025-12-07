@@ -55,6 +55,22 @@ class SectionSettingSeeder extends Seeder
                 'title' => 'Nuestros clientes',
                 'subtitle' => null,
             ],
+            // Productos
+            [
+                'section_key' => 'products_header',
+                'title' => 'Productos',
+                'subtitle' => 'Ofrecemos un amplio catálogo de equipos y dispositivos médicos de la más alta calidad.',
+            ],
+            [
+                'section_key' => 'products_quote',
+                'title' => '¿Necesita una cotización?',
+                'subtitle' => 'Nuestro equipo técnico le responderá en menos de 2 horas',
+            ],
+            [
+                'section_key' => 'product_faqs',
+                'title' => 'Preguntas Frecuentes',
+                'subtitle' => 'Encuentra respuestas claras a las consultas más habituales sobre nuestros equipos médicos, servicios, procesos de venta y soporte técnico.',
+            ],
         ];
 
         foreach ($sections as $section) {
