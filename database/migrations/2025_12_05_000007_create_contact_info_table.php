@@ -8,7 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Información de contacto editable (sección izquierda del formulario)
         Schema::create('contact_info', function (Blueprint $table) {
             $table->id();
             $table->string('email')->default('ventas@biosimtec.com.co');

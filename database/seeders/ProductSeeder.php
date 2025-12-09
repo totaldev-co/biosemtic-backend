@@ -12,11 +12,9 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        // Obtener categorías
         $categories = ProductCategory::all()->keyBy('slug');
 
         $products = [
-            // CPRE
             [
                 'category' => 'cpre',
                 'name' => 'Papilótomo o esfinterótomo triple lumen de Arco o nariz',
@@ -64,7 +62,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/PROCEDIMIENTOS CPRE (COLANGIO PANCREATOGRAFIA RETROGRADA ENDOSCOPICA)/Canastilla de Extracción/CANASTILLA DE EXTRACCION DE CALCULOS1.2.png',
                 ],
             ],
-            // Retiro de Cuerpo Extraño
             [
                 'category' => 'retiro-cuerpo-extrano',
                 'name' => 'Pinza de Extracción de Cuerpo Extraño',
@@ -78,7 +75,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/INSUMOS PARA RETIRO DE CUERPO EXTRAÑO/PINZA DE CUERPO EXTRAÑO1.7.JPG',
                 ],
             ],
-            // Biopsia
             [
                 'category' => 'biopsia',
                 'name' => 'Pinza de Biopsia para Broncoscopia o Gastroscopia Pediátrica',
@@ -101,7 +97,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/INSUMOS PARA TOMA DE BIOPSIA/no recubierta/PINZA DE BIOPSIA  NO RECUBIERTA1.4.JPG',
                 ],
             ],
-            // Hemostasia
             [
                 'category' => 'hemostasia',
                 'name' => 'Aguja para Escleroterapia',
@@ -138,7 +133,6 @@ class ProductSeeder extends Seeder
                 'description' => 'PARA KIT VARICES ESOFÁGICAS INCLUYE APLICADOR, BARRIL CON 6 BANDAS',
                 'images' => [],
             ],
-            // Polipectomía
             [
                 'category' => 'polipectomia',
                 'name' => 'Asa de Polipectomía en ESCUDO - HIBRIDA',
@@ -159,7 +153,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/INSUMOS PARA POLIPECTOMIA/ASA DE POLIPECTOMIA FRIA1.3.JPG',
                 ],
             ],
-            // Gastrostomía PEG
             [
                 'category' => 'gastrostomia-peg',
                 'name' => 'Kit de Gastrostomía Endoscópica Percutánea de 20 Fr- LUXURY- Método Pull',
@@ -190,7 +183,6 @@ class ProductSeeder extends Seeder
                 'description' => 'Material: silicona grado médico, producto Desechable.',
                 'images' => [],
             ],
-            // Reprocesamiento
             [
                 'category' => 'reprocesamiento',
                 'name' => 'Cepillo Desechable para Reprocesamiento de Endoscopios',
@@ -208,7 +200,6 @@ class ProductSeeder extends Seeder
                 'description' => 'TAPON CANAL TRABAJO BIOPSIA ENDOSCOPIO (PAQUETE X 10 UNIDADES)',
                 'images' => [],
             ],
-            // Videolaringoscopio
             [
                 'category' => 'videolaringoscopio',
                 'name' => 'HOJA VIDEOLARINGOSCOPIO MAC 3 (ADULTO)',
@@ -249,7 +240,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/INSUMOS PARA VIDEOLARINGOSCOPIO/hojas videolaringoscopio3.PNG',
                 ],
             ],
-            // Stent Esofágico
             [
                 'category' => 'stent-esofagico',
                 'name' => 'STENT ESOFAGICO AUTOEXPANDIBLE PARCIALMENTE CUBIERTO EN AMBOS EXTREMOS',
@@ -281,7 +271,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/STENT AUTOEXPANDIBLES ESOFAGICOS/HESV/HESV- ccc.jpg',
                 ],
             ],
-            // Stent Biliar
             [
                 'category' => 'stent-biliar',
                 'name' => 'STENT BILIAR AUTOEXPANDIBLE COMPLETAMENTE CUBIERTO DOBLE LAZO CON FLAP',
@@ -308,7 +297,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/STENT AUTOEXPANDIBLE BILIAR/SHS/SHS-2nnn.png',
                 ],
             ],
-            // Stent Duodenal
             [
                 'category' => 'stent-duodenal',
                 'name' => 'STENT DUODENAL/ PILORICO AUTOEXPANDIBLE NO RECUBIERTO DNZL',
@@ -325,7 +313,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/STENT AUTOEXPANDIBLE DUODENAL-PILORICO/NDSL/NDSL- nnn.png',
                 ],
             ],
-            // Stent Colon
             [
                 'category' => 'stent-colon',
                 'name' => 'STENT AUTOEXPANDIBLE NO RECUBIERTO DOBLE MALLADO TTS CNZ',
@@ -342,7 +329,6 @@ class ProductSeeder extends Seeder
                     'products/detailed/STENT AUTOEXPANDIBLE COLON-RECTAL/NCSL/NCSL-lasso nn.jpg',
                 ],
             ],
-            // Limpieza y Desinfección
             [
                 'category' => 'limpieza-desinfeccion',
                 'name' => 'MADACIDE –1',
@@ -406,7 +392,6 @@ class ProductSeeder extends Seeder
                 ]
             );
 
-            // Eliminar imágenes existentes y crear nuevas
             $product->images()->delete();
 
             foreach ($productData['images'] as $imgOrder => $imagePath) {

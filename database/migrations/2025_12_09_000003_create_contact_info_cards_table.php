@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('icon')->nullable();
             $table->string('title');
-            $table->json('text')->nullable(); // Can be string or array
+            $table->json('text')->nullable();
             $table->string('detail')->nullable();
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);

@@ -25,9 +25,6 @@ class ProductFaq extends Model
 
     public const CACHE_KEY = 'content.product_faqs';
 
-    /**
-     * Scope para API - solo FAQs activas ordenadas
-     */
     public function scopeForApi(Builder $query): Builder
     {
         return $query->where('is_active', true)
@@ -35,9 +32,6 @@ class ProductFaq extends Model
             ->orderBy('id');
     }
 
-    /**
-     * URL completa del icono
-     */
     public function getIconUrlAttribute(): ?string
     {
         if (!$this->icon) {
@@ -51,9 +45,6 @@ class ProductFaq extends Model
         return asset('storage/' . $this->icon);
     }
 
-    /**
-     * Formato para API
-     */
     public function toApiArray(): array
     {
         return [

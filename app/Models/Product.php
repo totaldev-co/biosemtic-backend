@@ -29,9 +29,6 @@ class Product extends Model
 
     public const CACHE_KEY = 'content.products';
 
-    /**
-     * Boot del modelo para generar slug automáticamente
-     */
     protected static function boot()
     {
         parent::boot();
@@ -49,25 +46,16 @@ class Product extends Model
         });
     }
 
-    /**
-     * Categoría del producto
-     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
-    /**
-     * Imágenes del producto
-     */
     public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class)->orderBy('order');
     }
 
-    /**
-     * Scope para API - solo productos activos con categorías activas
-     */
     public function scopeForApi(Builder $query): Builder
     {
         return $query->where('is_active', true)
@@ -79,9 +67,6 @@ class Product extends Model
             ->orderBy('name');
     }
 
-    /**
-     * Scope para filtrar por categoría (slug)
-     */
     public function scopeByCategory(Builder $query, string $categorySlug): Builder
     {
         return $query->whereHas('category', function ($q) use ($categorySlug) {
@@ -89,19 +74,12 @@ class Product extends Model
         });
     }
 
-    /**
-     * Imagen por defecto para productos sin imágenes
-     */
     public const DEFAULT_IMAGE_PATH = 'products/image.png';
 
-    /**
-     * Formato para listado de API
-     */
     public function toApiArray(): array
     {
         $images = $this->images->map(fn($img) => $img->image_url)->toArray();
 
-        // Si no hay imágenes, usar la imagen por defecto
         if (empty($images)) {
             $images = [asset('storage/' . self::DEFAULT_IMAGE_PATH)];
         }
@@ -117,9 +95,6 @@ class Product extends Model
         ];
     }
 
-    /**
-     * Formato para detalle de API
-     */
     public function toDetailApiArray(): array
     {
         $images = $this->images->map(fn($img) => [
@@ -128,7 +103,6 @@ class Product extends Model
             'alt' => $img->alt_text,
         ])->toArray();
 
-        // Si no hay imágenes, usar la imagen por defecto
         if (empty($images)) {
             $images = [
                 [

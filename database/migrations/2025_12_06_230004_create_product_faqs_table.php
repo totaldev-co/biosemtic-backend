@@ -8,12 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Preguntas frecuentes para productos (se muestran en ProductDetail)
         Schema::create('product_faqs', function (Blueprint $table) {
             $table->id();
-            $table->string('icon')->nullable(); // Icono de la pregunta
-            $table->string('title'); // Pregunta
-            $table->text('text'); // Respuesta
+            $table->string('icon')->nullable();
+            $table->string('title');
+            $table->text('text');
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

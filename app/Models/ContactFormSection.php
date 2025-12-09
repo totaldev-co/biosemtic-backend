@@ -21,9 +21,6 @@ class ContactFormSection extends Model
 
     public const CACHE_KEY = 'content.contact_form_section';
 
-    /**
-     * Override para retornar solo el primer registro activo
-     */
     public static function getCached(): ?array
     {
         return cache()->remember(

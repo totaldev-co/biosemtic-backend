@@ -15,12 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('pruebas123'),
+            'password' => bcrypt('pass123'),
         ]);
 
         $this->call([
@@ -42,11 +41,9 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             BrandSeeder::class,
             ContactInfoSeeder::class,
-            // Products
             ProductCategorySeeder::class,
             ProductSeeder::class,
             ProductFaqSeeder::class,
-            // Contact Page
             ContactFormSectionSeeder::class,
             ContactInfoCardSeeder::class,
         ]);

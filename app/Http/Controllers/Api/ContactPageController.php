@@ -10,10 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ContactPageController extends Controller
 {
-    /**
-     * Obtener la imagen del formulario de contacto
-     * GET /api/contact-page/form-image
-     */
     public function formImage(): Response
     {
         $data = ContactFormSection::getCached();
@@ -25,10 +21,6 @@ class ContactPageController extends Controller
         return RB::success($data);
     }
 
-    /**
-     * Obtener las tarjetas de información de contacto
-     * GET /api/contact-page/info-cards
-     */
     public function infoCards(): Response
     {
         $data = ContactInfoCard::getCached();

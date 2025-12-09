@@ -18,17 +18,11 @@ class ProductImage extends Model
         'order' => 'integer',
     ];
 
-    /**
-     * Producto al que pertenece la imagen
-     */
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
-    /**
-     * URL completa de la imagen
-     */
     public function getImageUrlAttribute(): string
     {
         if (!$this->image_path) {

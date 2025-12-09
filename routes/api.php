@@ -9,24 +9,12 @@ use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\ServicesController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes - Layout (Header/Footer)
-|--------------------------------------------------------------------------
-*/
-
 Route::prefix('layout')->group(function () {
     Route::get('/', [LayoutController::class, 'index']);
     Route::get('/site-config', [LayoutController::class, 'siteConfig']);
     Route::get('/navigation', [LayoutController::class, 'navigation']);
     Route::get('/footer-services', [LayoutController::class, 'footerServices']);
 });
-
-/*
-|--------------------------------------------------------------------------
-| API Routes - Home Page Content
-|--------------------------------------------------------------------------
-*/
 
 Route::prefix('home')->group(function () {
     Route::get('/section-settings', [HomeController::class, 'sectionSettings']);
@@ -39,12 +27,6 @@ Route::prefix('home')->group(function () {
     Route::get('/contact-info', [HomeController::class, 'contactInfo']);
 });
 
-/*
-|--------------------------------------------------------------------------
-| API Routes - About Us Page Content
-|--------------------------------------------------------------------------
-*/
-
 Route::prefix('about-us')->group(function () {
     Route::get('/who-we-are', [AboutUsController::class, 'whoWeAre']);
     Route::get('/excellence', [AboutUsController::class, 'excellence']);
@@ -54,12 +36,6 @@ Route::prefix('about-us')->group(function () {
     Route::get('/call-to-action', [AboutUsController::class, 'callToAction']);
 });
 
-/*
-|--------------------------------------------------------------------------
-| API Routes - Products Page Content
-|--------------------------------------------------------------------------
-*/
-
 Route::prefix('products')->group(function () {
     Route::get('/categories', [ProductsController::class, 'categories']);
     Route::get('/', [ProductsController::class, 'index']);
@@ -68,32 +44,14 @@ Route::prefix('products')->group(function () {
     Route::get('/{id}', [ProductsController::class, 'show']);
 });
 
-/*
-|--------------------------------------------------------------------------
-| API Routes - Services Page Content
-|--------------------------------------------------------------------------
-*/
-
 Route::prefix('services')->group(function () {
     Route::get('/items', [ServicesController::class, 'items']);
 });
-
-/*
-|--------------------------------------------------------------------------
-| API Routes - Contact Page Content
-|--------------------------------------------------------------------------
-*/
 
 Route::prefix('contact-page')->group(function () {
     Route::get('/form-image', [ContactPageController::class, 'formImage']);
     Route::get('/info-cards', [ContactPageController::class, 'infoCards']);
 });
-
-/*
-|--------------------------------------------------------------------------
-| API Routes - Contact Form
-|--------------------------------------------------------------------------
-*/
 
 Route::prefix('contact')->group(function () {
     Route::post('/request', [ContentController::class, 'storeContactRequest']);

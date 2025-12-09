@@ -14,10 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AboutUsController extends Controller
 {
-    /**
-     * Get Who We Are section data
-     * GET /api/about-us/who-we-are
-     */
     public function whoWeAre(): Response
     {
         $data = WhoWeAreSection::getCached();
@@ -29,10 +25,6 @@ class AboutUsController extends Controller
         return RB::success($data[0] ?? null);
     }
 
-    /**
-     * Get Excellence section data
-     * GET /api/about-us/excellence
-     */
     public function excellence(): Response
     {
         $cards = ExcellenceCard::getCached();
@@ -44,10 +36,6 @@ class AboutUsController extends Controller
         return RB::success($cards);
     }
 
-    /**
-     * Get Values section data
-     * GET /api/about-us/values
-     */
     public function values(): Response
     {
         $values = CompanyValue::getCached();
@@ -59,10 +47,6 @@ class AboutUsController extends Controller
         return RB::success($values);
     }
 
-    /**
-     * Get Mission and Vision section data
-     * GET /api/about-us/mission-vision
-     */
     public function missionVision(): Response
     {
         $data = MissionVisionSection::getCached();
@@ -74,10 +58,6 @@ class AboutUsController extends Controller
         return RB::success($data[0] ?? null);
     }
 
-    /**
-     * Get Client Testimonials section data
-     * GET /api/about-us/client-testimonials
-     */
     public function clientTestimonials(): Response
     {
         $testimonials = ClientTestimonial::getCached();
@@ -89,10 +69,6 @@ class AboutUsController extends Controller
         return RB::success($testimonials);
     }
 
-    /**
-     * Get Call To Action section data
-     * GET /api/about-us/call-to-action
-     */
     public function callToAction(): Response
     {
         $data = CallToActionSection::getCached();

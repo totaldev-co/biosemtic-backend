@@ -20,8 +20,8 @@ return new class extends Migration
         Schema::create('about_stats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('about_section_id')->constrained()->cascadeOnDelete();
-            $table->string('value'); // "12+", "8000+", etc.
-            $table->string('label'); // "Años de experiencia"
+            $table->string('value');
+            $table->string('label');
             $table->integer('order')->default(0);
             $table->timestamps();
         });

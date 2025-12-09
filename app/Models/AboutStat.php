@@ -25,7 +25,6 @@ class AboutStat extends Model
 
     protected static function booted(): void
     {
-        // Invalidar cache del padre cuando se modifica un stat
         static::saved(fn($stat) => AboutSection::clearCache());
         static::deleted(fn($stat) => AboutSection::clearCache());
     }

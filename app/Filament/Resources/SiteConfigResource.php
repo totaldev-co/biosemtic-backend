@@ -40,7 +40,6 @@ class SiteConfigResource extends Resource
         return $schema
             ->columns(1)
             ->components([
-                // Header
                 Section::make('Header')
                     ->description('Configuración del encabezado del sitio')
                     ->icon('heroicon-o-window')
@@ -57,7 +56,6 @@ class SiteConfigResource extends Resource
                             ->helperText('Logo que aparece en el header. Recomendado: PNG transparente'),
                     ]),
 
-                // Footer
                 Section::make('Footer')
                     ->description('Configuración del pie de página')
                     ->icon('heroicon-o-document-text')
@@ -96,13 +94,11 @@ class SiteConfigResource extends Resource
                             ->placeholder('© 2025 Biosimtec. Todos los derechos reservados.'),
                     ]),
 
-                // Redes Sociales
                 Section::make('Redes Sociales')
                     ->description('URLs e iconos de redes sociales')
                     ->icon('heroicon-o-share')
                     ->columns(1)
                     ->schema([
-                        // WhatsApp
                         Section::make('WhatsApp')
                             ->columns(1)
                             ->schema([
@@ -123,7 +119,6 @@ class SiteConfigResource extends Resource
                             ])
                             ->compact(),
 
-                        // Facebook
                         Section::make('Facebook')
                             ->columns(1)
                             ->schema([
@@ -144,7 +139,6 @@ class SiteConfigResource extends Resource
                             ])
                             ->compact(),
 
-                        // Instagram
                         Section::make('Instagram')
                             ->columns(1)
                             ->schema([
@@ -167,7 +161,6 @@ class SiteConfigResource extends Resource
                     ])
                     ->collapsible(),
 
-                // Estado
                 Section::make('Estado')
                     ->icon('heroicon-o-check-circle')
                     ->columns(1)

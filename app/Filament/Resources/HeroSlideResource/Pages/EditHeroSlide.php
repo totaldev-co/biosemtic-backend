@@ -11,9 +11,7 @@ class EditHeroSlide extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [
-            // No eliminar slides
-        ];
+        return [];
     }
 
     protected function getRedirectUrl(): string

@@ -12,10 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductsController extends Controller
 {
-    /**
-     * Obtener todas las categorías de productos
-     * GET /api/products/categories
-     */
     public function categories(): Response
     {
         $data = ProductCategory::getCached();
@@ -27,16 +23,6 @@ class ProductsController extends Controller
         return RB::success($data);
     }
 
-    /**
-     * Obtener productos con paginación, búsqueda y filtro por categoría
-     * GET /api/products
-     *
-     * Query params:
-     * - page: número de página (default: 1)
-     * - per_page: productos por página (default: 12)
-     * - search: búsqueda por nombre o descripción
-     * - category: slug de la categoría para filtrar
-     */
     public function index(Request $request): Response
     {
         $perPage = min((int) $request->get('per_page', 12), 50);
@@ -45,14 +31,12 @@ class ProductsController extends Controller
 
         $query = Product::forApi();
 
-        // Filtrar por categoría si se proporciona
         if ($categorySlug && $categorySlug !== 'todos') {
             $query->whereHas('category', function ($q) use ($categorySlug) {
                 $q->where('slug', $categorySlug);
             });
         }
 
-        // Búsqueda por nombre o descripción
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
@@ -78,10 +62,6 @@ class ProductsController extends Controller
         ]);
     }
 
-    /**
-     * Obtener productos por categoría (legacy - mantener compatibilidad)
-     * GET /api/products/category/{slug}
-     */
     public function byCategory(string $slug): Response
     {
         $category = ProductCategory::where('slug', $slug)
@@ -104,10 +84,6 @@ class ProductsController extends Controller
         ]);
     }
 
-    /**
-     * Obtener detalle de un producto
-     * GET /api/products/{id}
-     */
     public function show(string $id): Response
     {
         $product = Product::with(['category', 'images'])
@@ -121,10 +97,6 @@ class ProductsController extends Controller
         return RB::success($product->toDetailApiArray());
     }
 
-    /**
-     * Obtener las preguntas frecuentes de productos
-     * GET /api/products/faqs
-     */
     public function faqs(): Response
     {
         $data = ProductFaq::getCached();

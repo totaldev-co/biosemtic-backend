@@ -163,10 +163,4 @@ class HeroSlideResource extends Resource
             'edit' => Pages\EditHeroSlide::route('/{record}/edit'),
         ];
     }
-
-    // Deshabilitamos la creación de nuevos slides
-    public static function canCreate(): bool
-    {
-        return false;
-    }
 }

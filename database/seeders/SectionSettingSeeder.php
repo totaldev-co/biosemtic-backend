@@ -60,7 +60,6 @@ class SectionSettingSeeder extends Seeder
                 'title' => '¿Tienes dudas? Contáctanos',
                 'subtitle' => 'Atendemos tu solicitud, brindamos asesoría especializada',
             ],
-            // Productos
             [
                 'section_key' => 'products_header',
                 'title' => 'Productos',
@@ -76,7 +75,6 @@ class SectionSettingSeeder extends Seeder
                 'title' => 'Preguntas Frecuentes',
                 'subtitle' => 'Encuentra respuestas claras a las consultas más habituales sobre nuestros equipos médicos, servicios, procesos de venta y soporte técnico.',
             ],
-            // Servicios Page
             [
                 'section_key' => 'services_header',
                 'title' => 'Servicios',
@@ -87,7 +85,6 @@ class SectionSettingSeeder extends Seeder
                 'title' => '¿Necesitas un servicio no listado?',
                 'subtitle' => 'Comunicate con nosotros para preguntar por un servicio personalizado',
             ],
-            // Contacto Page
             [
                 'section_key' => 'contact_header',
                 'title' => 'Contáctanos',

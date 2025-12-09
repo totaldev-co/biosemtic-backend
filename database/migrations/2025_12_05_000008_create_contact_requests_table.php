@@ -8,7 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Solicitudes de contacto recibidas desde el formulario
         Schema::create('contact_requests', function (Blueprint $table) {
             $table->id();
             $table->string('name');

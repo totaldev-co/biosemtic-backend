@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Nombre para mostrar: "CPRE", "Biopsia", etc.
-            $table->string('slug')->unique(); // Slug: "cpre", "biopsia", etc.
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);

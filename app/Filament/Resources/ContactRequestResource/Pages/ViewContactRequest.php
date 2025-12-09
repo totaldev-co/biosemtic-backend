@@ -11,7 +11,6 @@ class ViewContactRequest extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        // Marcar como leído cuando se ve
         $this->record->markAsRead();
 
         return $data;

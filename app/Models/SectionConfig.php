@@ -26,9 +26,6 @@ class SectionConfig extends Model
 
     public const CACHE_KEY = 'content.section_configs';
 
-    /**
-     * Obtener configuración de una sección específica por su key
-     */
     public static function getByKey(string $key): ?array
     {
         $configs = self::getCached();
@@ -42,9 +39,6 @@ class SectionConfig extends Model
         return null;
     }
 
-    /**
-     * Obtener todas las configuraciones indexadas por section_key
-     */
     public static function getAllByKey(): array
     {
         $configs = self::getCached();
