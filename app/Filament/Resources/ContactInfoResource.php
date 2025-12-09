@@ -23,9 +23,9 @@ class ContactInfoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-phone';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Home';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Inicio';
 
-    protected static ?string $navigationLabel = 'Info de Contacto';
+    protected static ?string $navigationLabel = 'Info de Contacto (Home)';
 
     protected static ?string $modelLabel = 'Información de Contacto';
 

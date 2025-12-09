@@ -26,9 +26,9 @@ class AboutSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-information-circle';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Home';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Inicio';
 
-    protected static ?string $navigationLabel = 'Quiénes Somos';
+    protected static ?string $navigationLabel = 'Sobre Nosotros (Home)';
 
     protected static ?string $modelLabel = 'Sección Quiénes Somos';
 

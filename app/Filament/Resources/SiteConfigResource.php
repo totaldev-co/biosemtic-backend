@@ -25,15 +25,15 @@ class SiteConfigResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Configuración';
+    protected static string|UnitEnum|null $navigationGroup = 'Configuración General';
 
     protected static ?string $navigationLabel = 'Configuración del Sitio';
 
-    protected static ?string $modelLabel = 'Configuración';
+    protected static ?string $modelLabel = 'Configuración del Sitio';
 
     protected static ?string $pluralModelLabel = 'Configuración del Sitio';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 100;
 
     public static function form(Schema $schema): Schema
     {

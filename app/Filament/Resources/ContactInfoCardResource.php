@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductFaqResource\Pages;
-use App\Models\ProductFaq;
+use App\Filament\Resources\ContactInfoCardResource\Pages;
+use App\Models\ContactInfoCard;
 use BackedEnum;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
@@ -20,49 +19,57 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class ProductFaqResource extends Resource
+class ContactInfoCardResource extends Resource
 {
-    protected static ?string $model = ProductFaq::class;
+    protected static ?string $model = ContactInfoCard::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-question-mark-circle';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-information-circle';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Página Productos';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Contacto';
 
-    protected static ?string $navigationLabel = 'Preguntas Frecuentes';
+    protected static ?string $navigationLabel = 'Tarjetas de Información';
 
-    protected static ?string $modelLabel = 'Pregunta Frecuente';
+    protected static ?string $modelLabel = 'Tarjeta de Información';
 
-    protected static ?string $pluralModelLabel = 'Preguntas Frecuentes de Productos';
+    protected static ?string $pluralModelLabel = 'Tarjetas de Información';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {
         return $schema
-            ->columns(1)
             ->components([
-                Section::make('Información de la Pregunta')
+                Section::make('Información de la Tarjeta')
                     ->schema([
                         FileUpload::make('icon')
                             ->label('Icono')
                             ->image()
                             ->disk('public')
-                            ->directory('products/questions')
+                            ->directory('contact/info')
                             ->visibility('public')
-                            ->imagePreviewHeight('100')
-                            ->helperText('Icono de la pregunta (PNG recomendado)'),
+                            ->imagePreviewHeight('80')
+                            ->helperText('Icono de la tarjeta (PNG recomendado)'),
 
                         TextInput::make('title')
-                            ->label('Pregunta')
+                            ->label('Título')
                             ->required()
-                            ->maxLength(255)
-                            ->placeholder('¿Cómo puedo solicitar una demostración?'),
+                            ->maxLength(255),
 
-                        Textarea::make('text')
-                            ->label('Respuesta')
-                            ->required()
-                            ->rows(5)
-                            ->placeholder('Escribe la respuesta detallada aquí...'),
+                        Repeater::make('text')
+                            ->label('Texto (líneas)')
+                            ->simple(
+                                TextInput::make('line')
+                                    ->required()
+                                    ->placeholder('Ej: Lunes - Jueves: 7:00am - 5:00pm')
+                            )
+                            ->defaultItems(1)
+                            ->reorderable()
+                            ->addActionLabel('Agregar línea'),
+
+                        TextInput::make('detail')
+                            ->label('Detalle adicional')
+                            ->maxLength(255)
+                            ->helperText('Información adicional (ej: email, dirección)'),
                     ]),
 
                 Section::make('Configuración')
@@ -76,7 +83,8 @@ class ProductFaqResource extends Resource
                         Toggle::make('is_active')
                             ->label('Activo')
                             ->default(true),
-                    ]),
+                    ])
+                    ->columns(2),
             ]);
     }
 
@@ -87,19 +95,12 @@ class ProductFaqResource extends Resource
                 ImageColumn::make('icon')
                     ->label('Icono')
                     ->disk('public')
-                    ->circular()
-                    ->size(40),
+                    ->imageSize(40),
 
                 TextColumn::make('title')
-                    ->label('Pregunta')
+                    ->label('Título')
                     ->searchable()
-                    ->sortable()
-                    ->limit(60),
-
-                TextColumn::make('text')
-                    ->label('Respuesta')
-                    ->limit(50)
-                    ->color('gray'),
+                    ->sortable(),
 
                 TextColumn::make('order')
                     ->label('Orden')
@@ -125,17 +126,8 @@ class ProductFaqResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProductFaqs::route('/'),
-            'edit' => Pages\EditProductFaq::route('/{record}/edit'),
+            'index' => Pages\ListContactInfoCards::route('/'),
+            'edit' => Pages\EditContactInfoCard::route('/{record}/edit'),
         ];
-    }
-    public static function canCreate(): bool
-    {
-        return false;
-    }
-
-    public static function canDelete($record): bool
-    {
-        return false;
     }
 }

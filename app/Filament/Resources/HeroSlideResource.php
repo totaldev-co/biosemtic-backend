@@ -26,9 +26,9 @@ class HeroSlideResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-photo';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Home';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Inicio';
 
-    protected static ?string $navigationLabel = 'Hero Slides';
+    protected static ?string $navigationLabel = 'Slides del Hero';
 
     protected static ?string $modelLabel = 'Slide del Hero';
 

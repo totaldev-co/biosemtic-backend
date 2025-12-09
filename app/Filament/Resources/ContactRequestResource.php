@@ -24,7 +24,7 @@ class ContactRequestResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-inbox';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Solicitudes';
+    protected static string|UnitEnum|null $navigationGroup = null;
 
     protected static ?string $navigationLabel = 'Solicitudes de Contacto';
 
@@ -32,7 +32,7 @@ class ContactRequestResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Solicitudes de Contacto';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 0;
 
     public static function getNavigationBadge(): ?string
     {

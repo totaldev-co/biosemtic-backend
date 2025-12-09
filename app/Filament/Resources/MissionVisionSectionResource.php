@@ -25,7 +25,7 @@ class MissionVisionSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-flag';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Nosotros';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Nosotros';
 
     protected static ?string $navigationLabel = 'Misión y Visión';
 

@@ -27,7 +27,7 @@ class ClientTestimonialResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Nosotros';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Nosotros';
 
     protected static ?string $navigationLabel = 'Testimonios Clientes';
 

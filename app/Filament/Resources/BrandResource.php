@@ -26,7 +26,7 @@ class BrandResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-storefront';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Home';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Inicio';
 
     protected static ?string $navigationLabel = 'Marcas Aliadas';
 

@@ -30,7 +30,7 @@ class ProductResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cube';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Productos';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Productos';
 
     protected static ?string $navigationLabel = 'Productos';
 

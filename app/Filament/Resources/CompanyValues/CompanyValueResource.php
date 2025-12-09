@@ -26,7 +26,7 @@ class CompanyValueResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-heart';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Nosotros';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Nosotros';
 
     protected static ?string $navigationLabel = 'Valores';
 

@@ -23,15 +23,15 @@ class FooterServiceLinkResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-link';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Configuración';
+    protected static string|UnitEnum|null $navigationGroup = 'Configuración General';
 
-    protected static ?string $navigationLabel = 'Links Footer Servicios';
+    protected static ?string $navigationLabel = 'Links del Footer';
 
-    protected static ?string $modelLabel = 'Link de Servicio';
+    protected static ?string $modelLabel = 'Link del Footer';
 
-    protected static ?string $pluralModelLabel = 'Links de Servicios en Footer';
+    protected static ?string $pluralModelLabel = 'Links del Footer (Servicios)';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 102;
 
     public static function form(Schema $schema): Schema
     {

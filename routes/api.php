@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\AboutUsController;
+use App\Http\Controllers\Api\ContactPageController;
 use App\Http\Controllers\Api\ContentController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
 use App\Http\Controllers\Api\ProductsController;
+use App\Http\Controllers\Api\ServicesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +66,27 @@ Route::prefix('products')->group(function () {
     Route::get('/faqs', [ProductsController::class, 'faqs']);
     Route::get('/category/{slug}', [ProductsController::class, 'byCategory']);
     Route::get('/{id}', [ProductsController::class, 'show']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| API Routes - Services Page Content
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('services')->group(function () {
+    Route::get('/items', [ServicesController::class, 'items']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| API Routes - Contact Page Content
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('contact-page')->group(function () {
+    Route::get('/form-image', [ContactPageController::class, 'formImage']);
+    Route::get('/info-cards', [ContactPageController::class, 'infoCards']);
 });
 
 /*

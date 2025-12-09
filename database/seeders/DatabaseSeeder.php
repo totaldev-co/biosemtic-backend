@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             ClientTestimonialSeeder::class,
             CallToActionSectionSeeder::class,
             ServiceSeeder::class,
+            ServiceItemSeeder::class,
             ClientSeeder::class,
             NewsSeeder::class,
             BrandSeeder::class,
@@ -45,6 +46,9 @@ class DatabaseSeeder extends Seeder
             ProductCategorySeeder::class,
             ProductSeeder::class,
             ProductFaqSeeder::class,
+            // Contact Page
+            ContactFormSectionSeeder::class,
+            ContactInfoCardSeeder::class,
         ]);
     }
 }

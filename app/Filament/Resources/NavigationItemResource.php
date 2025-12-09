@@ -23,15 +23,15 @@ class NavigationItemResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-bars-3';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Configuración';
+    protected static string|UnitEnum|null $navigationGroup = 'Configuración General';
 
     protected static ?string $navigationLabel = 'Menú de Navegación';
 
-    protected static ?string $modelLabel = 'Item de Navegación';
+    protected static ?string $modelLabel = 'Item de Menú';
 
     protected static ?string $pluralModelLabel = 'Menú de Navegación';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 101;
 
     public static function form(Schema $schema): Schema
     {

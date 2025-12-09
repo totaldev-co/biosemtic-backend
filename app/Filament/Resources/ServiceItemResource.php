@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NewsResource\Pages;
-use App\Models\News;
+use App\Filament\Resources\ServiceItemResource\Pages;
+use App\Models\ServiceItem;
 use BackedEnum;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -19,27 +21,27 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class NewsResource extends Resource
+class ServiceItemResource extends Resource
 {
-    protected static ?string $model = News::class;
+    protected static ?string $model = ServiceItem::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Página Inicio';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Servicios';
 
-    protected static ?string $navigationLabel = 'Novedades';
+    protected static ?string $navigationLabel = 'Lista de Servicios';
 
-    protected static ?string $modelLabel = 'Novedad';
+    protected static ?string $modelLabel = 'Servicio';
 
-    protected static ?string $pluralModelLabel = 'Novedades';
+    protected static ?string $pluralModelLabel = 'Servicios';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make('Contenido')
+                Section::make('Información del Servicio')
                     ->schema([
                         TextInput::make('title')
                             ->label('Título')
@@ -50,49 +52,33 @@ class NewsResource extends Resource
                         Textarea::make('description')
                             ->label('Descripción')
                             ->required()
-                            ->rows(3)
-                            ->maxLength(500)
+                            ->rows(4)
+                            ->maxLength(1000)
                             ->columnSpanFull(),
 
                         FileUpload::make('image')
                             ->label('Imagen')
                             ->image()
-                            ->required()
                             ->disk('public')
-                            ->directory('news')
+                            ->directory('service-items')
                             ->visibility('public')
-                            ->columnSpanFull(),
+                            ->imagePreviewHeight('200')
+                            ->helperText('Imagen del servicio (PNG o JPG recomendado)'),
                     ]),
 
-                Section::make('Etiquetas')
+                Section::make('Items/Características')
                     ->schema([
-                        TextInput::make('top_left_text')
-                            ->label('Texto superior izquierdo')
-                            ->maxLength(100)
-                            ->placeholder('Ej: Nombre del equipo'),
-
-                        TextInput::make('top_right_text')
-                            ->label('Texto superior derecho')
-                            ->maxLength(100)
-                            ->placeholder('Ej: Venta de equipos'),
-                    ])
-                    ->columns(2),
-
-                Section::make('Enlace')
-                    ->schema([
-                        TextInput::make('link_text')
-                            ->label('Texto del enlace')
-                            ->required()
-                            ->maxLength(100)
-                            ->default('Ver más'),
-
-                        TextInput::make('link_url')
-                            ->label('URL del enlace')
-                            ->required()
-                            ->maxLength(255)
-                            ->default('/contacto'),
-                    ])
-                    ->columns(2),
+                        Repeater::make('items')
+                            ->label('Lista de características')
+                            ->simple(
+                                TextInput::make('item')
+                                    ->required()
+                                    ->placeholder('Ej: Inspección detallada')
+                            )
+                            ->defaultItems(2)
+                            ->reorderable()
+                            ->addActionLabel('Agregar característica'),
+                    ]),
 
                 Section::make('Configuración')
                     ->schema([
@@ -117,13 +103,12 @@ class NewsResource extends Resource
                 ImageColumn::make('image')
                     ->label('Imagen')
                     ->disk('public')
-                    ->imageHeight(60),
+                    ->imageSize(60),
 
                 TextColumn::make('title')
                     ->label('Título')
                     ->searchable()
-                    ->sortable()
-                    ->limit(40),
+                    ->sortable(),
 
                 TextColumn::make('order')
                     ->label('Orden')
@@ -143,14 +128,17 @@ class NewsResource extends Resource
             ->recordActions([
                 EditAction::make()
                     ->label('Editar'),
+                DeleteAction::make()
+                    ->label('Eliminar'),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNews::route('/'),
-            'edit' => Pages\EditNews::route('/{record}/edit'),
+            'index' => Pages\ListServiceItems::route('/'),
+            'create' => Pages\CreateServiceItem::route('/create'),
+            'edit' => Pages\EditServiceItem::route('/{record}/edit'),
         ];
     }
 }

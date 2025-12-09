@@ -26,9 +26,9 @@ class ServiceResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-wrench-screwdriver';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Home';
+    protected static string|UnitEnum|null $navigationGroup = 'Página Inicio';
 
-    protected static ?string $navigationLabel = 'Servicios';
+    protected static ?string $navigationLabel = 'Servicios (Tarjetas)';
 
     protected static ?string $modelLabel = 'Servicio';
 
