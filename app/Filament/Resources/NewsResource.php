@@ -38,21 +38,20 @@ class NewsResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Contenido')
                     ->schema([
                         TextInput::make('title')
                             ->label('Título')
                             ->required()
-                            ->maxLength(255)
-                            ->columnSpanFull(),
+                            ->maxLength(255),
 
                         Textarea::make('description')
                             ->label('Descripción')
                             ->required()
                             ->rows(3)
-                            ->maxLength(500)
-                            ->columnSpanFull(),
+                            ->maxLength(500),
 
                         FileUpload::make('image')
                             ->label('Imagen')
@@ -60,23 +59,21 @@ class NewsResource extends Resource
                             ->required()
                             ->disk('public')
                             ->directory('news')
-                            ->visibility('public')
-                            ->columnSpanFull(),
+                            ->visibility('public'),
                     ]),
 
                 Section::make('Etiquetas')
                     ->schema([
                         TextInput::make('top_left_text')
-                            ->label('Texto superior izquierdo')
+                            ->label('Texto inferior izquierdo')
                             ->maxLength(100)
                             ->placeholder('Ej: Nombre del equipo'),
 
                         TextInput::make('top_right_text')
-                            ->label('Texto superior derecho')
+                            ->label('Texto inferior derecho')
                             ->maxLength(100)
                             ->placeholder('Ej: Venta de equipos'),
-                    ])
-                    ->columns(2),
+                    ]),
 
                 Section::make('Enlace')
                     ->schema([
@@ -91,8 +88,7 @@ class NewsResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->default('/contacto'),
-                    ])
-                    ->columns(2),
+                    ]),
 
                 Section::make('Configuración')
                     ->schema([
@@ -105,8 +101,7 @@ class NewsResource extends Resource
                         Toggle::make('is_active')
                             ->label('Activo')
                             ->default(true),
-                    ])
-                    ->columns(2),
+                    ]),
             ]);
     }
 

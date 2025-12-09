@@ -47,6 +47,7 @@ class ContactRequestResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Información del Contacto')
                     ->schema([
@@ -146,6 +147,11 @@ class ContactRequestResource extends Resource
 
                 TextColumn::make('created_at')
                     ->label('Recibido')
+                    ->dateTime('d/m/Y H:i')
+                    ->sortable(),
+
+                TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->dateTime('d/m/Y H:i')
                     ->sortable(),
             ])

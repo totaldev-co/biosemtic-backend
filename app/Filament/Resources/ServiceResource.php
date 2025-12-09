@@ -39,21 +39,20 @@ class ServiceResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Información del Servicio')
                     ->schema([
                         TextInput::make('title')
                             ->label('Título')
                             ->required()
-                            ->maxLength(255)
-                            ->columnSpanFull(),
+                            ->maxLength(255),
 
                         Textarea::make('description')
                             ->label('Descripción')
                             ->required()
                             ->rows(3)
-                            ->maxLength(500)
-                            ->columnSpanFull(),
+                            ->maxLength(500),
 
                         FileUpload::make('icon')
                             ->label('Icono')
@@ -89,8 +88,7 @@ class ServiceResource extends Resource
                         Toggle::make('is_active')
                             ->label('Activo')
                             ->default(true),
-                    ])
-                    ->columns(2),
+                    ]),
             ]);
     }
 

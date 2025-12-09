@@ -36,24 +36,8 @@ class ContactInfoResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
-                Section::make('Encabezado')
-                    ->description('Textos principales de la sección de contacto')
-                    ->schema([
-                        TextInput::make('title')
-                            ->label('Título')
-                            ->required()
-                            ->maxLength(255)
-                            ->default('¿Tienes dudas? Contáctanos'),
-
-                        Textarea::make('subtitle')
-                            ->label('Subtítulo')
-                            ->required()
-                            ->rows(2)
-                            ->maxLength(500)
-                            ->default('Atendemos tu solicitud, brindamos asesoría especializada'),
-                    ]),
-
                 Section::make('Información de Contacto')
                     ->schema([
                         TextInput::make('email')
@@ -76,8 +60,7 @@ class ContactInfoResource extends Resource
                             ->label('Horarios')
                             ->rows(3)
                             ->helperText('Usa saltos de línea para separar los horarios'),
-                    ])
-                    ->columns(2),
+                    ]),
 
                 Section::make('Configuración')
                     ->schema([
@@ -92,15 +75,16 @@ class ContactInfoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
-                    ->label('Título')
-                    ->searchable(),
-
                 TextColumn::make('email')
-                    ->label('Email'),
+                    ->label('Email')
+                    ->searchable(),
 
                 TextColumn::make('phone')
                     ->label('Teléfono'),
+
+                TextColumn::make('address')
+                    ->label('Dirección')
+                    ->limit(30),
 
                 IconColumn::make('is_active')
                     ->label('Activo')

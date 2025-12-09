@@ -55,6 +55,11 @@ class SectionSettingSeeder extends Seeder
                 'title' => 'Nuestros clientes',
                 'subtitle' => null,
             ],
+            [
+                'section_key' => 'contact_info',
+                'title' => '¿Tienes dudas? Contáctanos',
+                'subtitle' => 'Atendemos tu solicitud, brindamos asesoría especializada',
+            ],
             // Productos
             [
                 'section_key' => 'products_header',

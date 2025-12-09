@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\ClientTestimonialResource\Pages;
 
 use App\Filament\Resources\ClientTestimonialResource;
-use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditClientTestimonial extends EditRecord
@@ -12,8 +11,6 @@ class EditClientTestimonial extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [
-            DeleteAction::make(),
-        ];
+        return [];
     }
 }

@@ -39,6 +39,7 @@ class WhoWeAreSectionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Contenido Principal')
                     ->description('Edita el contenido de la sección "Quiénes Somos" de la página Nosotros.')
@@ -48,15 +49,13 @@ class WhoWeAreSectionResource extends Resource
                             ->label('Título')
                             ->required()
                             ->maxLength(255)
-                            ->default('¿Quiénes somos?')
-                            ->columnSpanFull(),
+                            ->default('¿Quiénes somos?'),
 
                         Textarea::make('description')
                             ->label('Descripción')
                             ->required()
                             ->rows(5)
-                            ->maxLength(1000)
-                            ->columnSpanFull(),
+                            ->maxLength(1000),
 
                         FileUpload::make('image')
                             ->label('Imagen')
@@ -64,8 +63,7 @@ class WhoWeAreSectionResource extends Resource
                             ->disk('public')
                             ->directory('who-we-are')
                             ->visibility('public')
-                            ->helperText('Imagen principal de la sección')
-                            ->columnSpanFull(),
+                            ->helperText('Imagen principal de la sección'),
 
                         Toggle::make('is_active')
                             ->label('Activo')
@@ -73,7 +71,7 @@ class WhoWeAreSectionResource extends Resource
                     ]),
 
                 Section::make('Estadísticas')
-                    ->description('Configura las estadísticas que se muestran.')
+                    ->description('Configura las 4 estadísticas que se muestran en la sección.')
                     ->icon('heroicon-o-chart-bar')
                     ->schema([
                         Repeater::make('stats')
@@ -94,17 +92,17 @@ class WhoWeAreSectionResource extends Resource
                                 TextInput::make('order')
                                     ->label('Orden')
                                     ->numeric()
-                                    ->default(0),
+                                    ->default(0)
+                                    ->hidden(),
                             ])
-                            ->columns(3)
+                            ->columns(2)
                             ->defaultItems(4)
                             ->minItems(4)
                             ->maxItems(4)
                             ->reorderable()
                             ->addable(false)
                             ->deletable(false)
-                            ->collapsible()
-                            ->itemLabel(fn(array $state): ?string => $state['value'] ?? null),
+                            ->itemLabel(fn(array $state): ?string => ($state['value'] ?? '') . ' - ' . ($state['label'] ?? '')),
                     ]),
             ]);
     }

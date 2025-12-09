@@ -35,6 +35,7 @@ class CallToActionSectionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Contenido')
                     ->schema([

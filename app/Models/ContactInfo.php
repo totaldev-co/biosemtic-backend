@@ -12,8 +12,6 @@ class ContactInfo extends Model
     protected $table = 'contact_info';
 
     protected $fillable = [
-        'title',
-        'subtitle',
         'email',
         'phone',
         'address',
@@ -31,8 +29,6 @@ class ContactInfo extends Model
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'subtitle' => $this->subtitle,
             'email' => $this->email,
             'phone' => $this->phone,
             'address' => $this->address,

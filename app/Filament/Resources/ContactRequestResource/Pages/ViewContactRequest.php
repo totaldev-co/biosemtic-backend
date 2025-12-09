@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\ContactRequestResource\Pages;
 
 use App\Filament\Resources\ContactRequestResource;
-use Filament\Resources\Pages\ViewRecord;
+use Filament\Resources\Pages\EditRecord;
 
-class ViewContactRequest extends ViewRecord
+class ViewContactRequest extends EditRecord
 {
     protected static string $resource = ContactRequestResource::class;
 
@@ -15,5 +15,10 @@ class ViewContactRequest extends ViewRecord
         $this->record->markAsRead();
 
         return $data;
+    }
+
+    public function getTitle(): string
+    {
+        return 'Ver Solicitud';
     }
 }

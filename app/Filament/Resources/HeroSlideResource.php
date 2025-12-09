@@ -39,6 +39,7 @@ class HeroSlideResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Contenido del Slide')
                     ->description('Edita el contenido que se mostrará en el slide del hero.')
@@ -47,16 +48,14 @@ class HeroSlideResource extends Resource
                             ->label('Título')
                             ->required()
                             ->maxLength(255)
-                            ->placeholder('Ej: Especialistas en equipos médicos')
-                            ->columnSpanFull(),
+                            ->placeholder('Ej: Especialistas en equipos médicos'),
 
                         Textarea::make('description')
                             ->label('Descripción')
                             ->required()
                             ->rows(3)
                             ->maxLength(500)
-                            ->placeholder('Ej: Contamos con las mejores marcas, equipos y tecnología...')
-                            ->columnSpanFull(),
+                            ->placeholder('Ej: Contamos con las mejores marcas, equipos y tecnología...'),
 
                         FileUpload::make('image')
                             ->label('Imagen de fondo')
@@ -65,10 +64,8 @@ class HeroSlideResource extends Resource
                             ->disk('public')
                             ->directory('hero-slides')
                             ->visibility('public')
-                            ->helperText('Recomendado: 1920x1080px, formato JPG o PNG')
-                            ->columnSpanFull(),
-                    ])
-                    ->columns(2),
+                            ->helperText('Recomendado: 1920x1080px, formato JPG o PNG'),
+                    ]),
 
                 Section::make('Botón de acción')
                     ->description('Configura el texto y enlace del botón.')
@@ -86,8 +83,7 @@ class HeroSlideResource extends Resource
                             ->maxLength(500)
                             ->default('https://api.whatsapp.com/send/?phone=573185277390&text&type=phone_number&app_absent=0&wame_ctl=1')
                             ->helperText('URL completa incluyendo https://'),
-                    ])
-                    ->columns(2),
+                    ]),
 
                 Section::make('Configuración')
                     ->schema([
@@ -142,16 +138,7 @@ class HeroSlideResource extends Resource
                 TextColumn::make('updated_at')
                     ->label('Actualizado')
                     ->dateTime('d/m/Y H:i')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                TernaryFilter::make('is_active')
-                    ->label('Estado')
-                    ->boolean()
-                    ->trueLabel('Solo activos')
-                    ->falseLabel('Solo inactivos')
-                    ->native(false),
+                    ->sortable(),
             ])
             ->recordActions([
                 EditAction::make()
@@ -172,6 +159,7 @@ class HeroSlideResource extends Resource
     {
         return [
             'index' => Pages\ListHeroSlides::route('/'),
+            'create' => Pages\CreateHeroSlide::route('/create'),
             'edit' => Pages\EditHeroSlide::route('/{record}/edit'),
         ];
     }

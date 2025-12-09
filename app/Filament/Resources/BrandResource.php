@@ -39,6 +39,7 @@ class BrandResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Información de la Marca')
                     ->schema([
@@ -63,8 +64,7 @@ class BrandResource extends Resource
                         Toggle::make('is_active')
                             ->label('Activo')
                             ->default(true),
-                    ])
-                    ->columns(2),
+                    ]),
             ]);
     }
 

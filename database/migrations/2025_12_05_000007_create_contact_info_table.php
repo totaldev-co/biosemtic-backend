@@ -11,8 +11,6 @@ return new class extends Migration
         // Información de contacto editable (sección izquierda del formulario)
         Schema::create('contact_info', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->default('¿Tienes dudas? Contáctanos');
-            $table->text('subtitle')->default('Atendemos tu solicitud, brindamos asesoría especializada');
             $table->string('email')->default('ventas@biosimtec.com.co');
             $table->string('phone')->default('+57 318 5277390');
             $table->string('address')->default('Cra. 80c #25f-34');

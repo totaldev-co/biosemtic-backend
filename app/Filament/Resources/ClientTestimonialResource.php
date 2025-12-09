@@ -6,7 +6,6 @@ use App\Filament\Resources\ClientTestimonialResource\Pages;
 use App\Models\ClientTestimonial;
 use BackedEnum;
 use Filament\Actions\CreateAction;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -40,6 +39,7 @@ class ClientTestimonialResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Información del Cliente')
                     ->schema([
@@ -144,12 +144,6 @@ class ClientTestimonialResource extends Resource
             ->recordActions([
                 EditAction::make()
                     ->label('Editar'),
-                DeleteAction::make()
-                    ->label('Eliminar'),
-            ])
-            ->headerActions([
-                CreateAction::make()
-                    ->label('Nuevo Testimonio'),
             ]);
     }
 

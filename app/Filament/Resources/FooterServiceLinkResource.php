@@ -36,6 +36,7 @@ class FooterServiceLinkResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Información del Link')
                     ->schema([
@@ -95,6 +96,11 @@ class FooterServiceLinkResource extends Resource
                 IconColumn::make('is_active')
                     ->label('Activo')
                     ->boolean(),
+
+                TextColumn::make('updated_at')
+                    ->label('Actualizado')
+                    ->dateTime('d/m/Y H:i')
+                    ->sortable(),
             ])
             ->defaultSort('order')
             ->reorderable('order')

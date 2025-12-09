@@ -12,8 +12,6 @@ class ContactInfoSeeder extends Seeder
         ContactInfo::updateOrCreate(
             ['id' => 1],
             [
-                'title' => '¿Tienes dudas?',
-                'subtitle' => 'Contáctanos',
                 'email' => 'ventas@biosimtec.com.co',
                 'phone' => '+57 318 5277390',
                 'address' => 'Cra. 80c #25f-34',

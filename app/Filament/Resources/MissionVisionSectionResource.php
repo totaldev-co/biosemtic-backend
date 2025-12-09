@@ -38,6 +38,7 @@ class MissionVisionSectionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Imagen de Fondo')
                     ->description('Imagen que se muestra de fondo en la sección.')

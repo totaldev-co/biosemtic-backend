@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\HeroSlideResource\Pages;
 
 use App\Filament\Resources\HeroSlideResource;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListHeroSlides extends ListRecords
@@ -12,7 +13,8 @@ class ListHeroSlides extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            // No crear nuevos slides
+            CreateAction::make()
+                ->label('Nuevo Slide'),
         ];
     }
 }
