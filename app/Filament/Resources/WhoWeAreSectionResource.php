@@ -6,7 +6,6 @@ use App\Filament\Resources\WhoWeAreSectionResource\Pages;
 use App\Models\WhoWeAreSection;
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -69,41 +68,6 @@ class WhoWeAreSectionResource extends Resource
                             ->label('Activo')
                             ->default(true),
                     ]),
-
-                Section::make('Estadísticas')
-                    ->description('Configura las 4 estadísticas que se muestran en la sección.')
-                    ->icon('heroicon-o-chart-bar')
-                    ->schema([
-                        Repeater::make('stats')
-                            ->relationship()
-                            ->schema([
-                                TextInput::make('value')
-                                    ->label('Valor')
-                                    ->required()
-                                    ->maxLength(20)
-                                    ->placeholder('Ej: 12+, 8000+'),
-
-                                TextInput::make('label')
-                                    ->label('Etiqueta')
-                                    ->required()
-                                    ->maxLength(100)
-                                    ->placeholder('Ej: Años de experiencia'),
-
-                                TextInput::make('order')
-                                    ->label('Orden')
-                                    ->numeric()
-                                    ->default(0)
-                                    ->hidden(),
-                            ])
-                            ->columns(2)
-                            ->defaultItems(4)
-                            ->minItems(4)
-                            ->maxItems(4)
-                            ->reorderable()
-                            ->addable(false)
-                            ->deletable(false)
-                            ->itemLabel(fn(array $state): ?string => ($state['value'] ?? '') . ' - ' . ($state['label'] ?? '')),
-                    ]),
             ]);
     }
 
@@ -119,10 +83,6 @@ class WhoWeAreSectionResource extends Resource
                 TextColumn::make('title')
                     ->label('Título')
                     ->searchable(),
-
-                TextColumn::make('stats_count')
-                    ->label('Estadísticas')
-                    ->counts('stats'),
 
                 IconColumn::make('is_active')
                     ->label('Activo')

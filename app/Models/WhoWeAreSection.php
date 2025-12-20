@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Traits\HasContentCache;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class WhoWeAreSection extends Model
 {
@@ -23,14 +22,9 @@ class WhoWeAreSection extends Model
 
     public const CACHE_KEY = 'content.who_we_are_section';
 
-    public function stats(): HasMany
-    {
-        return $this->hasMany(WhoWeAreStat::class)->orderBy('order');
-    }
-
     public function scopeForApi($query)
     {
-        return $query->where('is_active', true)->with('stats');
+        return $query->where('is_active', true);
     }
 
     public function toApiArray(): array
@@ -40,10 +34,6 @@ class WhoWeAreSection extends Model
             'title' => $this->title,
             'description' => $this->description,
             'image' => $this->image_url,
-            'stats' => $this->stats->map(fn($stat) => [
-                'value' => $stat->value,
-                'label' => $stat->label,
-            ])->toArray(),
         ];
     }
 

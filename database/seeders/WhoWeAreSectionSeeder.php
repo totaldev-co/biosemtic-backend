@@ -9,7 +9,7 @@ class WhoWeAreSectionSeeder extends Seeder
 {
     public function run(): void
     {
-        $whoWeAreSection = WhoWeAreSection::updateOrCreate(
+        WhoWeAreSection::updateOrCreate(
             ['id' => 1],
             [
                 'title' => '¿Quiénes somos?',
@@ -18,18 +18,5 @@ class WhoWeAreSectionSeeder extends Seeder
                 'is_active' => true,
             ]
         );
-
-        $stats = [
-            ['value' => '12+', 'label' => 'Años de experiencia', 'order' => 1],
-            ['value' => '8000+', 'label' => 'Equipos reparados', 'order' => 2],
-            ['value' => '200+', 'label' => 'Número de clientes', 'order' => 3],
-            ['value' => '+120', 'label' => 'Número de equipos vendidos', 'order' => 4],
-        ];
-
-        $whoWeAreSection->stats()->delete();
-
-        foreach ($stats as $stat) {
-            $whoWeAreSection->stats()->create($stat);
-        }
     }
 }
