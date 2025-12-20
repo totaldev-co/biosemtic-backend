@@ -106,7 +106,8 @@ class SiteConfigResource extends Resource
                                     ->label('URL')
                                     ->url()
                                     ->maxLength(500)
-                                    ->placeholder('https://api.whatsapp.com/send/?phone=...'),
+                                    ->placeholder('https://api.whatsapp.com/send/?phone=...')
+                                    ->helperText('⚠️ Esta URL se utiliza para todas las redirecciones de WhatsApp en el sitio (botón flotante, productos, servicios, etc.)'),
 
                                 FileUpload::make('whatsapp_icon')
                                     ->label('Icono')
@@ -115,7 +116,8 @@ class SiteConfigResource extends Resource
                                     ->directory('site')
                                     ->visibility('public')
                                     ->imagePreviewHeight('40')
-                                    ->maxSize(512),
+                                    ->maxSize(512)
+                                    ->helperText('Este icono se muestra en el botón flotante de WhatsApp'),
                             ])
                             ->compact(),
 
