@@ -28,6 +28,7 @@ class SiteConfigSeeder extends Seeder
                 'whatsapp_icon' => 'site/whatsapp.png',
                 'facebook_icon' => 'site/facebook.png',
                 'instagram_icon' => 'site/instagram.png',
+                'privacy_policy_pdf' => 'legal/politica-privacidad.pdf',
                 'is_active' => true,
             ]
         );

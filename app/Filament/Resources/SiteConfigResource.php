@@ -163,6 +163,24 @@ class SiteConfigResource extends Resource
                     ])
                     ->collapsible(),
 
+                Section::make('Documentos Legales')
+                    ->description('Documentos legales del sitio')
+                    ->icon('heroicon-o-document-text')
+                    ->columns(1)
+                    ->schema([
+                        FileUpload::make('privacy_policy_pdf')
+                            ->label('Política de Privacidad (PDF)')
+                            ->disk('public')
+                            ->directory('legal')
+                            ->visibility('public')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->maxSize(10240)
+                            ->downloadable()
+                            ->openable()
+                            ->helperText('PDF de la política de privacidad. Se descargará cuando el usuario haga clic en el enlace de los formularios.'),
+                    ])
+                    ->collapsible(),
+
                 Section::make('Estado')
                     ->icon('heroicon-o-check-circle')
                     ->columns(1)

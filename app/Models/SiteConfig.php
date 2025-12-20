@@ -22,6 +22,7 @@ class SiteConfig extends Model
         'whatsapp_icon',
         'facebook_icon',
         'instagram_icon',
+        'privacy_policy_pdf',
         'is_active',
     ];
 
@@ -65,6 +66,7 @@ class SiteConfig extends Model
             'footer_services_title' => $this->footer_services_title,
             'footer_contact_title' => $this->footer_contact_title,
             'copyright_text' => $this->copyright_text,
+            'privacy_policy_pdf' => $this->getAssetUrl($this->privacy_policy_pdf),
             'social_links' => [
                 'whatsapp' => [
                     'url' => $this->whatsapp_url,
