@@ -14,6 +14,7 @@ class Service extends Model
         'description',
         'icon',
         'items',
+        'link_url',
         'order',
         'is_active',
     ];
@@ -34,6 +35,7 @@ class Service extends Model
             'description' => $this->description,
             'icon' => $this->icon_url,
             'items' => $this->items ?? [],
+            'link_url' => $this->link_url,
         ];
     }
 

@@ -77,6 +77,15 @@ class ServiceResource extends Resource
                             ->addActionLabel('Agregar característica'),
                     ]),
 
+                Section::make('Enlace')
+                    ->description('Configura a dónde redirige esta tarjeta al hacer clic')
+                    ->schema([
+                        TextInput::make('link_url')
+                            ->label('URL de redirección')
+                            ->placeholder('/productos, /servicios, etc.')
+                            ->helperText('Ruta interna a la que redirige al hacer clic en la tarjeta'),
+                    ]),
+
                 Section::make('Configuración')
                     ->schema([
                         TextInput::make('order')
