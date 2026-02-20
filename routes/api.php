@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ContentController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
 use App\Http\Controllers\Api\ProductsController;
+use App\Http\Controllers\Api\RentalProductsController;
 use App\Http\Controllers\Api\ServicesController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,7 @@ Route::prefix('layout')->group(function () {
     Route::get('/site-config', [LayoutController::class, 'siteConfig']);
     Route::get('/navigation', [LayoutController::class, 'navigation']);
     Route::get('/footer-services', [LayoutController::class, 'footerServices']);
+    Route::get('/footer-policies', [LayoutController::class, 'footerPolicies']);
 });
 
 Route::prefix('home')->group(function () {
@@ -45,7 +47,17 @@ Route::prefix('products')->group(function () {
 });
 
 Route::prefix('services')->group(function () {
-    Route::get('/items', [ServicesController::class, 'items']);
+    Route::get('/items', [ServicesController::class, 'items']); // @deprecated
+    Route::get('/tabs', [ServicesController::class, 'tabs']);
+    Route::get('/plans', [ServicesController::class, 'plans']);
+});
+
+Route::prefix('rental-products')->group(function () {
+    Route::get('/categories', [RentalProductsController::class, 'categories']);
+    Route::get('/', [RentalProductsController::class, 'index']);
+    Route::get('/faqs', [RentalProductsController::class, 'faqs']);
+    Route::get('/category/{slug}', [RentalProductsController::class, 'byCategory']);
+    Route::get('/{id}', [RentalProductsController::class, 'show']);
 });
 
 Route::prefix('contact-page')->group(function () {
