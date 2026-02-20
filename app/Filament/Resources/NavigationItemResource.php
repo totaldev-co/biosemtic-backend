@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\NavigationItemResource\Pages;
 use App\Models\NavigationItem;
 use BackedEnum;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -107,15 +106,23 @@ class NavigationItemResource extends Resource
             ->reorderable('order')
             ->recordActions([
                 EditAction::make()->label('Editar'),
-                DeleteAction::make()->label('Eliminar'),
             ]);
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return false;
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListNavigationItems::route('/'),
-            'create' => Pages\CreateNavigationItem::route('/create'),
             'edit' => Pages\EditNavigationItem::route('/{record}/edit'),
         ];
     }
