@@ -13,6 +13,11 @@ class SectionSetting extends Model
         'section_key',
         'title',
         'subtitle',
+        'features',
+    ];
+
+    protected $casts = [
+        'features' => 'array',
     ];
 
     public const CACHE_KEY = 'content.section_settings';
@@ -28,6 +33,7 @@ class SectionSetting extends Model
             'section_key' => $this->section_key,
             'title' => $this->title,
             'subtitle' => $this->subtitle,
+            'features' => $this->features,
         ];
     }
 }

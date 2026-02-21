@@ -95,6 +95,15 @@ class SectionSettingSeeder extends Seeder
                 'title' => '¿Tienes dudas? Contáctanos',
                 'subtitle' => 'Atendemos tu solicitud, brindamos asesoría especializada',
             ],
+            [
+                'section_key' => 'service_plans',
+                'title' => 'Plan de mantenimiento Anual',
+                'subtitle' => 'Este plan establece un programa proactivo y periódico de inspección, ajuste, lubricación y reparación de sus equipos clave. Su objetivo principal es prevenir fallos inesperados, asegurar el óptimo rendimiento y la extensión de la vida útil, minimizando tiempos de inactividad y garantizando la seguridad operativa durante todo el año.',
+                'features' => [
+                    'Incluye mantenimiento preventivo calendarizado y predictivo basado en la condición de los activos.',
+                    'Contribuye directamente a la calidad del servicio y a la seguridad del paciente.',
+                ],
+            ],
         ];
 
         foreach ($sections as $section) {
