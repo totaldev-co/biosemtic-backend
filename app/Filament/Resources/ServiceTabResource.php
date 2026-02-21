@@ -73,6 +73,11 @@ class ServiceTabResource extends Resource
                             ->defaultItems(0)
                             ->reorderable()
                             ->addActionLabel('Agregar característica'),
+
+                        Textarea::make('footer_text')
+                            ->label('Texto final')
+                            ->rows(3)
+                            ->helperText('Texto que aparece después de la lista de características (opcional)'),
                     ]),
 
                 Section::make('Imágenes')

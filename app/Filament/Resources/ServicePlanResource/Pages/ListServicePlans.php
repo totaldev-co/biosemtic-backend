@@ -5,6 +5,7 @@ namespace App\Filament\Resources\ServicePlanResource\Pages;
 use App\Filament\Resources\ServicePlanResource;
 use App\Models\SectionSetting;
 use Filament\Actions\Action;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -28,14 +29,24 @@ class ListServicePlans extends ListRecords
                         ->maxLength(255),
                     Textarea::make('subtitle')
                         ->label('Descripción')
-                        ->rows(4)
-                        ->maxLength(1000),
+                        ->rows(4),
+                    Repeater::make('features')
+                        ->label('Características')
+                        ->simple(
+                            TextInput::make('feature')
+                                ->required()
+                                ->placeholder('Ej: Incluye mantenimiento preventivo...')
+                        )
+                        ->defaultItems(0)
+                        ->reorderable()
+                        ->addActionLabel('Agregar característica'),
                 ])
                 ->fillForm(function (): array {
                     $setting = SectionSetting::where('section_key', 'service_plans')->first();
                     return [
-                        'title' => $setting?->title ?? 'Plan de mantenimiento Anual',
-                        'subtitle' => $setting?->subtitle ?? 'Este plan establece un programa proactivo y periódico de inspección, ajuste, lubricación y reparación de sus equipos clave.',
+                        'title' => $setting?->title ?? '',
+                        'subtitle' => $setting?->subtitle ?? '',
+                        'features' => $setting?->features ?? [],
                     ];
                 })
                 ->action(function (array $data): void {
@@ -44,6 +55,7 @@ class ListServicePlans extends ListRecords
                         [
                             'title' => $data['title'],
                             'subtitle' => $data['subtitle'],
+                            'features' => $data['features'],
                         ]
                     );
 

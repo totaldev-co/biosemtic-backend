@@ -48,9 +48,13 @@ class ServicesController extends Controller
 
         $sectionSettings = Cache::remember('content.service_plans_settings', 3600, function () {
             $setting = SectionSetting::where('section_key', 'service_plans')->first();
+            if (!$setting) {
+                return null;
+            }
             return [
-                'title' => $setting?->title ?? 'Plan de mantenimiento Anual',
-                'subtitle' => $setting?->subtitle ?? 'Este plan establece un programa proactivo y periódico de inspección, ajuste, lubricación y reparación de sus equipos clave. Su objetivo principal es prevenir fallos inesperados, asegurar el óptimo rendimiento y la extensión de la vida útil, minimizando tiempos de inactividad y garantizando la seguridad operativa durante todo el año.',
+                'title' => $setting->title,
+                'subtitle' => $setting->subtitle,
+                'features' => $setting->features,
             ];
         });
 

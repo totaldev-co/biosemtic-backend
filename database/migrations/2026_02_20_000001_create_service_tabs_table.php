@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->json('features')->nullable();
+            $table->text('footer_text')->nullable();
             $table->string('image')->nullable();
             $table->string('bottom_image')->nullable();
             $table->boolean('has_button')->default(false);
