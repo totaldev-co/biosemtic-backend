@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('section_key')->unique();
             $table->string('title');
-            $table->string('subtitle')->nullable();
+            $table->text('subtitle')->nullable();
+            $table->json('features')->nullable();
             $table->timestamps();
         });
     }
